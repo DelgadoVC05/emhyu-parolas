@@ -1,0 +1,444 @@
+/*
+Theme Name: Parolas Guimaras
+Theme URI: https://parolasguimaras.com
+Author: Vince Carlo A. Delgado
+Author URI: https://yourwebsite.com
+Description: Parolas Guimaras is a vibrant and elegant WordPress theme designed for local businesses, pasalubong brands, food shops, and tourism-related enterprises. This theme showcases the rich culture and flavors of Guimaras, Philippines, through a clean, user-friendly, and fully responsive layout. Ideal for businesses selling local delicacies or promoting regional products, Parolas Guimaras offers customizable features, visual appeal, and smooth performance — making it perfect for building a strong online presence rooted in authenticity, tradition, and local pride.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: parolas-guimaras
+Tags: local-business, food, pasalubong, guimaras, tourism, custom-theme
+*/
+
+:root {
+    --primary-green: #9ED86A;
+    --primary-yellow: #FFD700;
+    --dark-text: #023020;
+    --light-bg: #F8F9FA;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-text);
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-green) 0%, #7BC142 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section .logo-container {
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideInFromTop 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.hero-section .tagline {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: fadeInRight 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.hero-section .btn-primary-custom {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: bounceIn 1s ease forwards;
+    animation-delay: 1.2s;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.lighthouse-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-yellow);
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--dark-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.lighthouse-icon::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 10px;
+    background: #FF6B35;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.brand-name {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--primary-yellow);
+    text-shadow: 3px 3px 0px #2C3E50, -1px -1px 0px #2C3E50, 1px -1px 0px #2C3E50, -1px 1px 0px #2C3E50;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+.brand-subtitle {
+    font-size: 1.5rem;
+    color: var(--dark-text);
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-top: 0.5rem;
+}
+
+.tagline {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--dark-text);
+    text-align: center;
+    margin: 3rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.products-section {
+    padding: 80px 0;
+    background: var(--light-bg);
+}
+
+.btn-view-details {
+    background: linear-gradient(135deg, #FF6B35, #FF8C42);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    margin-top: 10px;
+}
+
+.btn-view-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+    color: white;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    height: 100%;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.product-card.animate {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.award-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #8B4513;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.5);
+    z-index: 2;
+    animation: pulse 2s infinite;
+}
+
+.award-badge i {
+    margin-right: 3px;
+    color: #FF6B35;
+}
+
+.product-image {
+    height: 250px;
+    background: linear-gradient(45deg, #F4E4BC, #E8D5A3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-bag {
+    width: 120px;
+    height: 160px;
+    background: linear-gradient(145deg, #D4B896, #C4A882);
+    border-radius: 0 0 60px 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 -20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-bag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    height: 40px;
+    background: var(--primary-yellow);
+    border-radius: 5px;
+}
+
+.product-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary-green), #7BC142);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(123, 193, 66, 0.4);
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(123, 193, 66, 0.6);
+    color: white;
+}
+
+.features-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-green), #7BC142);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    margin: 0 auto 1rem;
+    box-shadow: 0 5px 20px rgba(123, 193, 66, 0.3);
+}
+
+.footer {
+    background: var(--dark-text);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-yellow);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(158, 216, 106, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(158, 216, 106, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(158, 216, 106, 0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.animate-on-scroll {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-left {
+    animation: fadeInLeft 1s ease forwards;
+}
+
+.animate-fade-right {
+    animation: fadeInRight 1s ease forwards;
+}
+
+.animate-bounce {
+    animation: bounceIn 1.2s ease forwards;
+}
+
+.animate-slide-top {
+    animation: slideInFromTop 0.8s ease forwards;
+}
+
+.animate-rotate {
+    animation: rotateIn 1s ease forwards;
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pulsing {
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .brand-name {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1.8rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+}
