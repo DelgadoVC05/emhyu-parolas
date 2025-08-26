@@ -1,0 +1,1 @@
+# Parolas-Guimaras-Wordpress-Theme
