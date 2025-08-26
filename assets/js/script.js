@@ -1,150 +1,90 @@
 const productDetails = {
 
-    'mangorind': {
+    'mangorind-spicy': {
         name: 'Mangorind Candy Spicy',
-        image: 'mangrind_candy_spicy.png',
+        image: 'mangorind_candy_spicy.png',
         description: 'Turn up the heat with our Mangorind Candy Spicy Flavor, a bold twist on your Parolas favorite! Made with the rich pulp of tamarind, blended sugar, and strips of sweet dried mangoes, this version packs a fiery kick of labuyo chili pepper—perfect for those who crave a little adventure in every bite. The irresistible balance of sweet, tangy, and spicy creates an exciting burst of flavors that lingers, making it the ultimate treat for thrill-seekers, pasalubong hunters, and candy lovers alike. Experience Guimaras like never before—grab your pack of Parolas Guimaras Mangorind Spicy Candy today and taste the heat of paradise!',
-        ingredients: null,
-        weight: '10 pcs',
-        shelfLife: null,
-        price: '₱110',
+        weight: '',
+        price: '₱100',
         award: null,
-        features: null,
+        qty: 10,
+
     },
 
 
-    'mangorind': {
+    'mangorind-plain': {
         name: 'Mangorind Candy',
-        image: '',
-        description: 'A delightful fusion of mango sweetness and tamarind tanginess in candy form. This innovative treat combines two beloved Filipino flavors into one irresistible confection.',
-        ingredients: null,
-        weight: '10 pcs',
-        shelfLife: null,
-        price: '₱110',
+        image: 'mangorind_candy_plain.png',
+        description: 'PAROLAS Mango Puffed Rice with Cashew Nuts is a delightful snack that combines the sweet and tangy flavor of mango with the light and crispy texture of puffed rice and luscious taste of cashew nuts. It is a perfect blend of sweet and savory flavors that make it an irresistible treat for anyone who loves a tasty snack!',
+        weight: '',
+        price: '₱100',
         award: null,
-        features: null,
+        qty: 10,
+
     },
 
 
-    'calamansi': {
-        name: 'Calamansi Serafina',
-        image: '',
-        description: 'Experience the zesty, citrusy flavor of Filipino calamansi in every bite. This refreshing treat offers a perfect balance of sweet and tangy flavors.',
-        ingredients: 'Premium flour, fresh calamansi juice, sugar, eggs, butter, natural citrus extract',
-        weight: '250g per pack',
-        shelfLife: '30 days from production date',
-        price: '₱140',
-        award: 'Best Seller - 3 consecutive months',
-        features: ['Fresh calamansi flavor', 'Vitamin C enriched', 'Refreshing taste', 'Natural citrus goodness']
-    },
-    'pretzel-sticks': {
-        name: 'Mango Glazed Pretzel Sticks',
-        image: '',
+    'mangorind-puffed-rice': {
+        name: 'Mango Puffed Rice',
+        image: 'mango_ruffed_rice.png',
         description: 'Crunchy pretzel sticks coated with our signature mango glaze. The perfect combination of salty and sweet that makes for an irresistible snack.',
-        ingredients: 'Wheat flour, mango glaze, salt, yeast, vegetable oil, mango extract',
-        weight: '200g per pack',
-        shelfLife: '45 days from production date',
-        price: '₱120',
+        weight: '',
+        price: '₱100',
         award: "Customer's Choice Award 2024",
-        features: ['Crunchy texture', 'Sweet and salty combination', 'Perfect snack size', 'Great for sharing']
+        qty: 10,
+
     },
-    'dragon-fruit': {
-        name: 'Dragon Fruit Serafina',
-        image: '',
-        description: 'An exotic treat featuring the unique flavor of dragon fruit. This colorful and flavorful serafina offers a taste adventure with every bite.',
-        ingredients: 'Premium flour, dragon fruit extract, sugar, eggs, butter, natural coloring',
-        weight: '250g per pack',
-        shelfLife: '30 days from production date',
-        price: '₱160',
+
+    'mango-serafina-big': {
+        name: 'Mango Serafina',
+        image: 'mango_serafina_big.png',
+        description: 'Mango Serafina is consist of crispy bite-sized dough balls that are expertly deep-fried until golden brown then coated with caramelized sugar and Guimaras mangoes. They are finished off with a dusting of white sugar, creating a doubly satisfying and irresistibly delicious snack that will leave you craving for more!',
+        weight: '180g',
+        price: '₱100',
+        qty: null,
         award: null,
-        features: ['Exotic dragon fruit flavor', 'Unique taste experience', 'Natural fruit extracts', 'Eye-catching appearance']
-    },
-    'mango-classic': {
-        name: 'Mango Serafina (Classic)',
-        image: '',
-        description: 'Our classic mango serafina recipe that has been perfected over the years. Made with the finest Guimaras mangoes for an authentic taste experience.',
-        ingredients: 'Premium flour, pure mango puree, sugar, eggs, butter, vanilla extract',
-        weight: '250g per pack',
-        shelfLife: '30 days from production date',
-        price: '₱145',
-        award: null,
-        features: ['Classic recipe', 'Pure mango flavor', 'Traditional preparation', 'Family favorite']
-    },
-    'original': {
-        name: 'Original Serafina',
-        image: '',
-        description: 'Our time-tested original serafina recipe that started it all. Made with traditional methods passed down through generations, this classic treat embodies the authentic taste of Guimaras.',
-        ingredients: 'Premium flour, traditional spices, sugar, eggs, butter, vanilla extract',
-        weight: '250g per pack',
-        shelfLife: '30 days from production date',
-        price: '₱135',
-        award: 'Heritage Recipe - Traditional Favorite',
-        features: ['Original family recipe', 'Traditional preparation methods', 'Time-tested flavor', 'Heritage favorite']
+
     },
 
 
 };
 
 
-
-
-// Show product details modal
-function showProductDetails(productId) {
-    const product = productDetails[productId];
-    if (!product) return;
-
-    const modalBody = document.getElementById('modalBody');
-    modalBody.innerHTML = `
-    <div class="row">
-        <div class="col-md-4">
-            <div class="product-image mb-3" style="height: 200px; border-radius: 15px; display: flex; align-items: center; justify-content: center; position: relative;">
-              
-                <div class="product-bag">
-                    <img src="${path}${product.image}" style="object-fit:contain; width:70%;"/>
-                </div>
-            </div>
-            <div class="text-center">
-                <h4 class="text-success fw-bold">${product.price}</h4>
-                ${product.award ? `<div class="alert alert-warning p-2 mt-2" style="font-size: 0.85rem; background-color:#ffffff;"><i class="fas fa-trophy text-warning me-1"></i><strong>${product.award}</strong></div>` : ''}
-            </div>
-        </div>
-        <div class="col-md-8">
-            <h4 class="fw-bold mb-3" style="color: var(--accent-color)">${product.name}</h4>
-            <p class="mb-3">${product.description}</p>
-
-            <div class="row mb-3">
-                <div class="col-sm-6">
-                    <strong>Weight:</strong> ${product.weight}
-                </div>
-                <div class="col-sm-6">
-                    <strong>Shelf Life:</strong> ${product.shelfLife}
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <strong>Ingredients:</strong><br>
-                    <small class="text-muted">${product.ingredients}</small>
-            </div>
-
-            <div class="mb-3">
-                <strong>Special Features:</strong>
-                <ul class="list-unstyled mt-2">
-                    ${product.features.map(feature => `<li><i class="fas fa-check text-success me-2"></i>${feature}</li>`).join('')}
-                </ul>
-            </div>
-        </div>
-    </div>
-    `;
-
-    document.getElementById('productModalLabel').textContent = product.name;
-    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-    modal.show();
-}
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
 
+
+
+    const productModal = document.getElementById("productModal");
+    document.querySelectorAll("[data-bs-toggle='modal']").forEach(button => {
+        button.addEventListener("click", function () {
+            const title = this.getAttribute("data-title");
+            const description = this.getAttribute("data-description");
+            const image = this.getAttribute("data-image");
+            const price = this.getAttribute("data-price");
+
+            console.log('Button clicked:', title, description, image, price);
+
+            if (productModal) {
+                productModal.querySelector(".modal-title").textContent = title;
+                productModal.querySelector("#productModalImage").src = image;
+                productModal.querySelector("#productModalDescription").textContent = description;
+                productModal.querySelector("#productModalPrice").innerHTML = price;
+            }
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM loaded, tabs should be functional');
+
+        // Add event listeners for debugging
+        const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                console.log('Tab clicked:', this.getAttribute('data-bs-target'));
+            });
+        });
+    });
 
 
 

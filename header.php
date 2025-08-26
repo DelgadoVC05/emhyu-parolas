@@ -9,7 +9,6 @@
       <!-- Fonts -->
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/assets/images/hero/img1.png">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> <?php wp_body_open(); ?>>

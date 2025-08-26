@@ -242,8 +242,6 @@ h5,
 h6 {
 
     color: var(--accent-color);
-    /* font-family: var(--heading-font); */
-
 
 }
 
@@ -1035,6 +1033,43 @@ h6 {
 /*--------------------------------------------------------------
 # Product Section
 --------------------------------------------------------------*/
+
+
+.nav-tabs {
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 3rem;
+    justify-content: center;
+}
+
+.nav-tabs .nav-link {
+    background: transparent;
+    color: #6c757d;
+    border: none;
+    border-radius: 0;
+    margin: 0 5px;
+    padding: 15px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #ff6b35;
+    border-bottom-color: #ff6b35;
+    background: rgba(255, 107, 53, 0.05);
+}
+
+.nav-tabs .nav-link.active {
+    color: #ff6b35;
+    border-bottom-color: #ff6b35;
+    background: rgba(255, 107, 53, 0.08);
+    font-weight: 600;
+}
+
+.tab-content {
+    background: transparent;
+}
+
 .products-section {
     padding: 80px 0;
 

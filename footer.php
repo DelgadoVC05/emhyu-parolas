@@ -45,7 +45,7 @@
             <i class="fab fa-youtube fa-lg"></i>
           </a>
           <a href="https://x.com/EmhyuFoods" target="_blank" class="text-light">
-            <i class="fab fa-twitter fa-lg"></i>
+            <i class="fa-brands fa-x-twitter"></i>
           </a>
         </div>
       </div>
@@ -99,24 +99,6 @@
         </div>
 
 
-      <!-- Product Details Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background: linear-gradient(135deg, var(--primary-green), #7BC142); color: white;">
-                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="modalBody">
-                   
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="https://shopee.ph/emhyufoods" target="_blank" class="btn btn-primary-custom">Order Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Offcanvas Mobile Menu -->
     <div class="offcanvas offcanvas-start w-100" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
