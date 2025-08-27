@@ -34,38 +34,23 @@
                         </li>
                     </ul>
 
-                    <!-- <div class="d-flex align-items-end">
-             
-                          <div class="mx-5">
-                              <a href="https://www.facebook.com/PAROLASguimaras/" target="_blank"><i
-                                    class="fab fa-facebook fa-lg" style="color: var( --accent-color)"></i></a>
-                            <a href="https://www.instagram.com/parolasguimaras/?hl=en" target="_blank"><i
-                                    class="fab fa-instagram fa-lg" style="color: var( --accent-color)"></i></a>
-                            <a href="https://www.youtube.com/channel/UCfaQyFUPj7Uelsoejc96c3A" target="_blank"><i
-                                    class="fab fa-youtube fa-lg" style="color: var( --accent-color)"></i></a>
-                            <a href="https://x.com/EmhyuFoods" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
-                          </div>
-                      
-                    </div> -->
-
-
                 </div>
 
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                    <form action="#" class="contact-form form-validate" novalidate="novalidate">
+                    <form class="contact-form form-validate">
                         <div class="row">
                             <div class="col-sm-12 mb-3">
                                 <div class="form-group">
                                     <label class="required-field mb-2" for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="">
+                                        placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-sm-12 mb-3">
                                 <div class="form-group">
                                     <label class="required-field mb-2" for="email">Email</label>
                                     <input type="text" class="form-control" id="email" name="email"
-                                        placeholder="">
+                                        placeholder="" required>
                                 </div>
                             </div>
 
@@ -73,13 +58,13 @@
                                 <div class="form-group">
                                     <label class="required-field mb-2" for="email">Subject</label>
                                     <input type="text" class="form-control" id="subject" name="subject"
-                                        placeholder="">
+                                        placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-sm-12 mb-3">
                                 <div class="form-group">
                                     <label class="required-field mb-2" for="message">Message</label>
-                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder=""></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="" required></textarea>
                                 </div>
                             </div>
 
