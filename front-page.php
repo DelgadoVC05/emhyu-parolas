@@ -16,8 +16,6 @@
                   <button onclick="window.location.href='<?php echo home_url( '/product' ); ?>'" class="btn btn-get-started"><i class="fas fa-shopping-bag me-2"></i>
                                   Explore Products</button>                
 
-                                  
-
                   <button class="btn btn-lg btn-video-play" data-bs-toggle="modal" data-bs-target="#videoModal">
                                   <i class="fas fa-play me-2"></i><span>Watch Video</span>
                     </button>

@@ -2,7 +2,7 @@
 
 <section id="contact" class="contact section">
 
-    <div class="section-title mt-5" data-aos="fade-up">
+    <div class="section-title" data-aos="fade-up">
         <h2 class="display-5 fw-bold mb-4">Contact Us</h2>
         <p class="sub-title">Have Questions? Reach out to Parolas Guimaras today</p>
     </div>

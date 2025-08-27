@@ -8,8 +8,8 @@
                 </a>
          
         </div>
-<div id="main-content" class="blog-page" style="margin-top: 80px; margin-bottom: 80px;">
-    <div class="container">
+        <div id="main-content" class="blog-page" style="margin-top: 80px; margin-bottom: 80px;">
+            <div class="container">
         
         <div class="row clearfix">
             
@@ -31,7 +31,7 @@
                             <h3><?php the_title(); ?></h3>
 
                             <!-- Content -->
-                            <p><?php the_content(); ?></p>
+                            <p class="content" style="font-size:14px"><?php the_content(); ?></p>
                         </div>
                     </div>
 
@@ -51,14 +51,14 @@
             <div class="col-lg-4 col-md-12 right-box">
                 
                 <!-- Search -->
-                <div class="card">
+                <!-- <div class="card">
                     <div class="body search">
                         <?php get_search_form(); ?>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Categories -->
-                <div class="card">
+                <!-- <div class="card">
                     <div class="header">
                         <h2>Categories</h2>
                     </div>
@@ -70,7 +70,7 @@
                             )); ?>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Recent Posts -->
                 <div class="card">

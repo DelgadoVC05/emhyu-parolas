@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row mt-n5">
             <?php
-            // Query latest blog posts
+       
             $args = array(
                 'post_type' => 'post',
                 'posts_per_page' => 6, 
