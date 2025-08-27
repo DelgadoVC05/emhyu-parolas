@@ -7,7 +7,7 @@
         <p class="sub-title">Have Questions? Reach out to Parolas Guimaras today</p>
     </div>
 
-    <div class="container mb-5">
+    <div class="container mb-5" data-aos="fade-up" data-aos-delay="100">
         <div class="contact__wrapper shadow-lg mt-n9">
             <div class="row no-gutters">
                 <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2" data-aos="fade-up" data-aos-delay="200">

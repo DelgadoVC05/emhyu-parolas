@@ -1043,9 +1043,9 @@ h6 {
 }
 
 .nav-tabs .nav-link.active {
-    background: var(--accent-color);
-    color: var(--contrast-color);
-    border-color: var(--accent-color);
+    background: var(--yelllow-color);
+    color: var(--accent-color);
+    border-color: var(--yelllow-color);
 }
 
 
@@ -1057,7 +1057,8 @@ h6 {
 
 
 .products-section {
-    padding: 80px 0;
+    padding-top: 50px;
+    padding-bottom: 150px;
 
 }
 
@@ -1291,43 +1292,71 @@ h6 {
 }
 
 
-/* Awards and Certificate
+/* ------------------------------
+     Awards and Certificate
 ------------------------------*/
 
+
 .certificate-card {
-    background-color: var(--contrast-color);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(15, 77, 15, 0.08);
     overflow: hidden;
-    transition: all 0.3s ease;
-    border: 3px solid transparent;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255, 215, 0, 0.1);
     position: relative;
+    background: var(--contrast-color);
+    height: 100%;
 }
 
 .certificate-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-color);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(15, 77, 15, 0.15);
+    border-color: var(--yelllow-color);
 }
 
-.certificate-card::before {
+
+
+.certificate-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-
-    background: linear-gradient(90deg, var(--gold-color), var(--primary-color));
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
 }
 
+
 .certificate-image {
-    height: 250px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     display: flex;
-    align-items: center;
     justify-content: center;
-    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 450px;
     overflow: hidden;
+}
+
+.certificate-image a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+a .award-image {
+    border-radius: 12px;
+    cursor: url('assets/images/eye.png'), pointer;
+}
+
+.certificate-image img.award-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .certificate-image::before {
@@ -1337,125 +1366,307 @@ h6 {
     left: 20px;
     right: 20px;
     bottom: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
     z-index: 1;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05);
 }
+
+.certificate-card:hover .certificate-image::before {
+    border-color: rgba(255, 215, 0, 0.4);
+    transform: scale(1.02);
+    box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.08);
+}
+
 
 .award-icon {
-    font-size: 4rem;
-    color: var(--gold-color);
+    font-size: 4.5rem;
+    color: var(--yelllow-color);
     position: relative;
     z-index: 2;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
 }
 
+.certificate-card:hover .award-icon {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 1;
+    text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Enhanced image styling with better display */
 .award-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
     position: relative;
     z-index: 2;
-    padding: 20px;
-    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    filter: brightness(1.02) contrast(1.05);
+    border-radius: 12px;
+}
+
+.certificate-card:hover .award-image {
+    transform: scale(1.03);
+    filter: brightness(1.05) contrast(1.08);
 }
 
 .certificate-image.has-image {
-    background: white;
+    background: var(--contrast-color);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.08);
 }
 
-.certificate-image.has-image::before {
-    border-color: rgba(255, 215, 0, 0.3);
-}
 
 .certificate-content {
-    padding: 2rem;
-}
-
-.award-title {
-    color: var(--secondary-color);
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
 }
 
 .award-category {
-    color: var(--primary-color);
+    color: var(--accent-color);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Underline accent for category */
+.award-category::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--yelllow-color);
+    border-radius: 1px;
+}
+
+.award-title {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
+    line-height: 1.3;
 }
 
 .award-description {
-    color: var(--text-light);
-    line-height: 1.6;
+    color: rgba(15, 77, 15, 0.7);
+    line-height: 1.7;
     margin-bottom: 1.5rem;
+    font-size: 0.95rem;
 }
+
 
 .award-year {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     background: var(--yelllow-color);
-    color: white;
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
+    color: var(--contrast-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
+/* Shimmer effect for year badge */
+.award-year::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
 
+.certificate-card:hover .award-year::before {
+    left: 100%;
+}
 
+/* Premium certificate badge */
 .award-badge-certificate {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: var(--gold-color);
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 8px rgba(15, 77, 15, 0.3);
+    z-index: 4;
 }
 
+/* Statistics section */
 .certificate-stats {
-    background: var(--light-bg);
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-top: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    margin-top: 3rem;
+    box-shadow: inset 0 2px 10px rgba(15, 77, 15, 0.05);
 }
 
 .stat-item {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
+    position: relative;
 }
 
+/* Animated counter effect */
 .stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 800;
     color: var(--accent-color);
     display: block;
+    margin-bottom: 0.5rem;
+    position: relative;
 }
 
 .stat-label {
-    color: var(--text-light);
+    color: rgba(15, 77, 15, 0.7);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Separator between stats */
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--yelllow-color), transparent);
+}
+
+/* Loading animation for awards */
+@keyframes certificateEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.certificate-card {
+    animation: certificateEntrance 0.6s ease-out forwards;
+}
+
+/* Stagger animation delays */
+.certificate-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.certificate-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.certificate-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.certificate-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Responsive improvements for image display */
+@media (max-width: 992px) {
+    .certificate-image {
+        height: 280px;
+    }
+
+    .certificate-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .award-title {
+        font-size: 1.2rem;
+    }
+
+    .award-image {
+        padding: 25px;
+    }
 }
 
 @media (max-width: 768px) {
     .certificate-image {
-        height: 200px;
+        height: 250px;
     }
 
     .certificate-content {
         padding: 1.5rem;
     }
 
+    .award-title {
+        font-size: 1.1rem;
+    }
 
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .certificate-stats {
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .award-image {
+        padding: 20px;
+    }
+
+    .stat-item::after {
+        display: none;
+    }
 }
 
+@media (max-width: 576px) {
+    .certificate-image {
+        height: 220px;
+    }
+
+    .award-year {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .stat-item {
+        padding: 1rem 0.5rem;
+    }
+
+    .award-image {
+        padding: 15px;
+    }
+
+    .award-icon {
+        font-size: 3.5rem;
+    }
+}
+
+
+/*--------------------------------------------------------------# 
+                        Footer
+--------------------------------------------------------------*/
 .footer {
     background: #0F4D0F;
     color: white;
