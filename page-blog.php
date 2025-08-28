@@ -24,14 +24,14 @@
                         <?php if (has_post_thumbnail()) : ?>
                             <a href="<?php the_permalink(); ?>" class="image-link">
                                 <?php the_post_thumbnail('medium', ['class' => 'card-img']); ?>
-                                <div class="image-overlay">
+                                <div class="blog-image-overlay">
                                     <span class="read-more-btn">Read Article</span>
                                 </div>
                             </a>
                         <?php else : ?>
                             <a href="<?php the_permalink(); ?>" class="image-link">
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/blog/default.png" alt="<?php the_title(); ?>" class="card-img img-fluid" loading="lazy">
-                                <div class="image-overlay">
+                                <div class="blog-image-overlay">
                                     <span class="read-more-btn">Read Article</span>
                                 </div>
                             </a>
@@ -56,12 +56,9 @@
                             </a>
                         </h3>
 
-                                       
-                         
-
+                                    
                         <p class="blog-excerpt">
-                           <?php 
-                                            echo wp_trim_words( get_the_excerpt(), 20, '... <a href="'. get_permalink() .'">Read more</a>' ); ?>
+                           <?php echo wp_trim_words( get_the_excerpt(), 20, '... <a href="'. get_permalink() .'">Read more</a>' ); ?>
                         </p>
                         
                         <div class="blog-footer">
@@ -70,7 +67,7 @@
                                 <span class="author-name"><?php the_author(); ?></span>
                             </div>
                             
-                             <span class="meta-item">
+                             <span class="meta-item text-muted text-small">
                                 <i class="fas fa-calendar-alt"></i>
                                 <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M d, Y'); ?></time>
                             </span>

@@ -11,25 +11,6 @@ function emhyuparolas_theme_support() {
 add_action('after_setup_theme', 'emhyuparolas_theme_support');
 
 
-function mytheme_remove_tab_conflicts() {
-    // Remove WooCommerce's jQuery UI Tabs
-    wp_dequeue_script('jquery-ui-tabs');
-}
-add_action('wp_enqueue_scripts', 'mytheme_remove_tab_conflicts', 20);
-
-function mytheme_remove_old_bootstrap() {
-    // These handles may vary (check source for exact names!)
-    wp_dequeue_script('bootstrap');
-    wp_deregister_script('bootstrap');
-
-    wp_dequeue_style('bootstrap');
-    wp_deregister_style('bootstrap');
-}
-add_action('wp_enqueue_scripts', 'mytheme_remove_old_bootstrap', 20);
-
-
-
-
 function disable_wc_jquery_tabs() {
     wp_dequeue_script('jquery-ui-tabs');
 }
@@ -60,7 +41,6 @@ function emhyuparolas_theme_styles() {
     // CSS
     wp_enqueue_style('emhyuparolas-bootstrap-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css', array(), '5.3.8', 'all');
 
-
     wp_enqueue_style('aos-css', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css', array(), '2.3.4', 'all');
     wp_enqueue_style('font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css', array(), '7.0.0', 'all');
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0', 'all');
@@ -88,8 +68,6 @@ function emhyuparolas_register_scripts() {
 
     // JS
     wp_enqueue_script('emhyuparolas-bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js', array(), '5.3.8', true);
-
-
 
     wp_enqueue_script('aos-js', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js', array(), '2.3.4', true);
     wp_enqueue_script('font-awesome-js', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/js/all.min.js', array(), '7.0.0', true);

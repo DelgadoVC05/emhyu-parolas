@@ -1,40 +1,20 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
-
-
-    // const productModal = document.getElementById("productModal");
-    // document.querySelectorAll("[data-bs-toggle='modal']").forEach(button => {
-    //     button.addEventListener("click", function () {
-    //         const title = this.getAttribute("data-title");
-    //         const description = this.getAttribute("data-description");
-    //         const image = this.getAttribute("data-image");
-    //         const price = this.getAttribute("data-price");
-
-    //         console.log('Button clicked:', title, description, image, price);
-
-    //         if (productModal) {
-    //             productModal.querySelector(".modal-title").textContent = title;
-    //             productModal.querySelector("#productModalImage").src = image ?? '../assets/image/default-product.png';
-    //             productModal.querySelector("#productModalDescription").textContent = description;
-    //             productModal.querySelector("#productModalPrice").innerHTML = price;
-    //         }
-    //     });
-    // });
-
-
-       document.querySelectorAll('#productTabs button[data-bs-toggle="tab"]').forEach(triggerEl => {
+    document.querySelectorAll('#productTabs button[data-bs-toggle="tab"]').forEach(triggerEl => {
         triggerEl.addEventListener('click', function (e) {
-          e.preventDefault();
-          const tab = new bootstrap.Tab(triggerEl);
-          tab.show();
+            e.preventDefault();
+            const tab = new bootstrap.Tab(triggerEl);
+            tab.show();
         });
-      });
+    });
 
-     const modal = document.getElementById('productModal');
+    const modal = document.getElementById('productModal');
     const buttons = document.querySelectorAll('[data-bs-target="#productModal"]');
-    
-    buttons.forEach(function(button) {
-        button.addEventListener('click', function() {
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
             // Get data from button attributes
             const title = this.getAttribute('data-title');
             const description = this.getAttribute('data-description');
@@ -42,14 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const price = this.getAttribute('data-price');
             const weight = this.getAttribute('data-weight');
             const award = this.getAttribute('data-award');
-            
+
             // Populate modal
             document.getElementById('productModalLabel').textContent = title;
             document.getElementById('productModalDescription').innerHTML = description;
             document.getElementById('productModalImage').src = image;
             document.getElementById('productModalPrice').innerHTML = price;
             document.getElementById('productModalWeight').textContent = weight;
-            
+
             // Handle award badge
             const awardBadge = document.getElementById('productModalAward');
             if (award && award.trim() !== '') {
@@ -60,23 +40,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-    
+
     // Tab switching animation
     const tabLinks = document.querySelectorAll('#productTabs button[data-bs-toggle="pill"]');
-    
-    tabLinks.forEach(function(tabLink) {
-        tabLink.addEventListener('click', function() {
+
+    tabLinks.forEach(function (tabLink) {
+        tabLink.addEventListener('click', function () {
             const targetPane = document.querySelector(this.getAttribute('data-bs-target'));
             targetPane.style.opacity = '0.5';
-            
-            setTimeout(function() {
+
+            setTimeout(function () {
                 targetPane.style.opacity = '1';
             }, 300);
         });
     });
 
 
-   
+
 
 
 
@@ -261,5 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
 });
+
+
