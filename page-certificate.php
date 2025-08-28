@@ -15,17 +15,20 @@
                 <div class="certificate-card h-100">
                     <div class="award-badge-certificate">Official License</div>
                     <div class="certificate-image has-image">
-                        <a class="glightbox" data-gallery="fdal" href="<?php echo get_template_directory_uri(); ?>/assets/images/certificate_award/fda.png" style="cursor:url('./assets/images/eye.png'), pointer;"
-                    
+                        <a class="glightbox" data-gallery="fdal" href="<?php echo get_template_directory_uri(); ?>/assets/images/certificate_award/fda.png" 
                         >
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/certificate_award/fda.png" 
                             alt="FDA License to Operate as Food Manufacturer" 
-                            class="award-image obj-fit-contain"
+                            class="award-image obj-fit-cover"
                             loading="lazy"
                             onerror="this.style.display='none'; this.parentElement.classList.remove('has-image'); this.parentElement.innerHTML='<i class=\'fas fa-certificate award-icon\'></i>';">
-
-                            </a>
+                          
+                              <div class="ca-image-overlay">
+                                    <span class="ca-btn">Read Article</span>
+                              </div>
+                    </a>
                     </div>
+                    
                     <div class="certificate-content">
                         <div class="award-category">Government License</div>
                         <h3 class="award-title">FDA License to Operate</h3>

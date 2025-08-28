@@ -15,12 +15,18 @@
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to Blog</span>
             </a>
-            
-            <!-- Progress Bar -->
-            <div class="reading-progress">
-                <div class="progress-bar" id="reading-progress"></div>
+            <div class="reading-time">
+                <i class="fas fa-clock"></i>
+               <?php $time = reading_time(); ?>
+             <span>
+                <?php 
+                    echo $time > 0 
+                        ? $time . ' ' . ($time > 1 ? 'mins' : 'min') . ' read' 
+                        : 'Less than 1 min read';
+                ?>
+            </span>
+
             </div>
-        
         </div>
     </div>
 </div>
@@ -72,56 +78,7 @@
                             <?php the_content(); ?>
                         </div>
                         
-                        <!-- Article Footer -->
-                        <footer class="article-footer">
-                            
-                            <!-- Tags -->
-                            <?php if (has_tag()) : ?>
-                                <div class="article-tags">
-                                    <h4>Tags:</h4>
-                                    <div class="tags-list">
-                                        <?php the_tags('', '', ''); ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <!-- Share Buttons -->
-                            <!-- <div class="social-share" id="socialShare">
-                                <h4>Share this article:</h4>
-                                <div class="share-buttons">
-                                    <a href="#" class="share-facebook" data-platform="facebook">
-                                        <i class="fab fa-facebook-f"></i>
-                                        <span>Facebook</span>
-                                    </a>
-                                    <a href="#" class="share-twitter" data-platform="twitter">
-                                        <i class="fab fa-twitter"></i>
-                                        <span>Twitter</span>
-                                    </a>
-                                    <a href="#" class="share-linkedin" data-platform="linkedin">
-                                        <i class="fab fa-linkedin-in"></i>
-                                        <span>LinkedIn</span>
-                                    </a>
-                                    <a href="#" class="share-copy" data-platform="copy">
-                                        <i class="fas fa-link"></i>
-                                        <span>Copy Link</span>
-                                    </a>
-                                </div>
-                            </div>
-                             -->
-                            <!-- Author Bio -->
-                            <div class="author-bio">
-                                <div class="author-avatar-large">
-                                    <?php echo get_avatar(get_the_author_meta('ID'), 80); ?>
-                                </div>
-                                <div class="author-info">
-                                    <h4><?php the_author(); ?></h4>
-                                    <!-- <p><?php echo get_the_author_meta('description') ?: 'Content creator and blogger sharing insights on various topics.'; ?></p> -->
-                                    <div class="author-social">
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                        </footer>
+                 
                     </article>
                     
                     <!-- Navigation Between Posts -->
@@ -257,54 +214,7 @@
     ?>
 
    <script>
-// Reading Progress Bar
-window.addEventListener('scroll', function() {
-    const article = document.querySelector('.article-content');
-    if (!article) return;
-    
-    const articleTop = article.offsetTop;
-    const articleHeight = article.offsetHeight;
-    const windowHeight = window.innerHeight;
-    const scrollTop = window.pageYOffset;
-    
-    const progress = Math.min(
-        Math.max((scrollTop - articleTop + windowHeight / 2) / articleHeight, 0),
-        1
-    );
-    
-    document.getElementById('reading-progress').style.width = progress * 100 + '%';
-});
 
-// Auto-generate Table of Contents
-document.addEventListener('DOMContentLoaded', function() {
-    const headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
-    const toc = document.getElementById('tableOfContents');
-    
-    if (headings.length > 0 && toc) {
-        const tocList = document.createElement('ul');
-        
-        headings.forEach((heading, index) => {
-            const id = 'heading-' + index;
-            heading.id = id;
-            
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#' + id;
-            a.textContent = heading.textContent;
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                heading.scrollIntoView({ behavior: 'smooth' });
-            });
-            
-            li.appendChild(a);
-            tocList.appendChild(li);
-        });
-        
-        toc.appendChild(tocList);
-    } else {
-        document.querySelector('.toc-widget').style.display = 'none';
-    }
-});
 
 // Social Share Functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -343,27 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Active TOC highlighting
-window.addEventListener('scroll', function() {
-    const headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
-    const tocLinks = document.querySelectorAll('.table-of-contents a');
-    
-    let current = '';
-    
-    headings.forEach(heading => {
-        const rect = heading.getBoundingClientRect();
-        if (rect.top <= 100) {
-            current = heading.id;
-        }
-    });
-    
-    tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-        }
-    });
-});
+
 </script>
     
 </body>
