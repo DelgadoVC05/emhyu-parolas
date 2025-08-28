@@ -11,6 +11,8 @@
     
     <?php
 
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
     $categories = get_terms([
         'taxonomy'   => 'product_cat',
         'hide_empty' => true,
@@ -156,7 +158,7 @@
 <!-- Product Modal -->
 
 <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-3 border-0">
         
       <!-- Header with Close Button -->
