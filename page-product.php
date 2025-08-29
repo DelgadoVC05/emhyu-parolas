@@ -85,6 +85,8 @@
                 </div>
               </div>
               <div class="product-info">
+
+             
                 <h5 class="product-name"><?php echo $product->get_name(); ?></h5>
                 <p class="text-muted"><?php echo wp_trim_words($product->get_short_description(), 12); ?></p>
                 <button class="btn-view-details"
@@ -93,7 +95,7 @@
                         data-title='<?php echo esc_attr($product->get_name()); ?>'
                         data-description='<?php echo esc_attr($product->get_description()); ?>'
                         data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
-                        data-price='<?php echo $product->get_price_html(); ?>'>
+                        data-price='<?php echo $product->get_price(); ?>'>
                   View Details
                 </button>
               </div>
@@ -139,7 +141,7 @@
                         data-title='<?php echo esc_attr($product->get_name()); ?>'
                         data-description='<?php echo esc_attr($product->get_description()); ?>'
                         data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
-                        data-price='<?php echo $product->get_price_html(); ?>'>
+                        data-price='<?php echo $product->get_price(); ?>'>
                   View Details
                 </button>
               </div>

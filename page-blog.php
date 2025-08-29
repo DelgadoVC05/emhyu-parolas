@@ -2,7 +2,7 @@
 <?php get_header(); ?>
 <section id="blog" class="blog py-5">
 
-  <div class="section-title" data-aos="fade-up">
+  <div class="section-title mt-5" data-aos="fade-up">
         <h2 class="display-5 fw-bold mb-4">Blog</h2>
         <p class="sub-title">Behind the Brand – Awards, Innovations & Local Stories</p>
     </div>

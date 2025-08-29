@@ -2,13 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    document.querySelectorAll('#productTabs button[data-bs-toggle="tab"]').forEach(triggerEl => {
-        triggerEl.addEventListener('click', function (e) {
-            e.preventDefault();
-            const tab = new bootstrap.Tab(triggerEl);
-            tab.show();
-        });
-    });
+
 
     const modal = document.getElementById('productModal');
     const buttons = document.querySelectorAll('[data-bs-target="#productModal"]');

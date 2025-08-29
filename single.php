@@ -36,7 +36,7 @@
         <div class="row">
             
             <!-- Main Article Content -->
-            <div class="col-lg-8">
+            <div class="col-lg-8 mt-5">
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <article class="blog-article">
                         
@@ -128,7 +128,7 @@
             </div>
             
             <!-- Sidebar -->
-            <aside class="col-lg-4">
+            <aside class="col-lg-4 mt-5">
                 <div class="sidebar-sticky">
                     
                 

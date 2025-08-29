@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
-<section id="contact" class="contact section">
+<section id="contact" class="contact section py-5">
 
-    <div class="section-title" data-aos="fade-up">
+    <div class="section-title mt-5" data-aos="fade-up">
         <h2 class="display-5 fw-bold mb-4">Contact Us</h2>
         <p class="sub-title">Have Questions? Reach out to Parolas Guimaras today</p>
     </div>
@@ -37,8 +37,10 @@
                 </div>
 
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                    <form class="contact-form form-validate">
+                    <form class="contact-form form-validate" id="contact-form" method="post">
                         <div class="row">
+
+                           <input type="hidden" id="website" name="website" autocomplete="off">
                             <div class="col-sm-12 mb-3">
                                 <div class="form-group">
                                     <label class="required-field mb-2" for="name">Name</label>
