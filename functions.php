@@ -38,7 +38,7 @@ function emhyuparolas_theme_styles() {
     wp_enqueue_style('font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css', array(), '7.0.0', 'all');
     wp_enqueue_style('swiper-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css', array(), '11.0.5', 'all');
     wp_enqueue_style('glightbox-css', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.min.css', array(), '3.3.1', 'all');
-    wp_enqueue_style('emhyuparolas-style', get_template_directory_uri() . '/style.css', array(), $version, 'all');
+    wp_enqueue_style('emhyuparolas-style', get_template_directory_uri() . '/assets/css/style.css', array(), $version, 'all');
 }
 add_action('wp_enqueue_scripts', 'emhyuparolas_theme_styles');
 

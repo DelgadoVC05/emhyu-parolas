@@ -94,6 +94,7 @@
                         data-bs-target="#productModal"
                         data-title='<?php echo esc_attr($product->get_name()); ?>'
                         data-description='<?php echo esc_attr($product->get_description()); ?>'
+                        data-weight='<?php echo esc_attr($product->get_weight()); ?>'
                         data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
                         data-price='<?php echo $product->get_price(); ?>'>
                   View Details
@@ -140,6 +141,7 @@
                         data-bs-target="#productModal"
                         data-title='<?php echo esc_attr($product->get_name()); ?>'
                         data-description='<?php echo esc_attr($product->get_description()); ?>'
+                        data-weight='<?php echo esc_attr($product->get_weight()); ?>'
                         data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
                         data-price='<?php echo $product->get_price(); ?>'>
                   View Details
@@ -204,8 +206,8 @@
               <div class="card border-0 bg-light h-100">
                 <div class="card-body p-3 text-center">
                   <i class="fas fa-tag text-success mb-2"></i>
-                  <h6 class="card-title small text-muted mb-1">Price</h6>
-                  <h5 id="productModalPrice" class="text-success fw-bold mb-0"></h5>
+                  <h4 class="card-title small text-muted mb-1">Price</h4>
+                  <h5 id="productModalPrice" class="text-dark fw-bold mb-0"></h5>
                 </div>
               </div>
             </div>
@@ -215,11 +217,13 @@
               <div class="card border-0 bg-light h-100">
                 <div class="card-body p-3 text-center">
                   <i class="fas fa-weight text-primary mb-2"></i>
-                  <h6 class="card-title small text-muted mb-1">Net Weight</h6>
-                  <p id="productModalWeight" class="fw-semibold mb-0 text-dark"></p>
+                  <h4 class="card-title small text-muted mb-1">Net Weight</h4>
+                  <h5 id="productModalWeight" class="text-dark fw-bold mb-0"></h5>
                 </div>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>

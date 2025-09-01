@@ -42,7 +42,7 @@
 
       </nav>
 
-      <!-- <a class="btn-getstarted" href="index.html#book-a-table"></a> -->
+
 
     </div>
   </header>

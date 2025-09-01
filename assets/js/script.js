@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('productModalDescription').innerHTML = description;
             document.getElementById('productModalImage').src = image;
             document.getElementById('productModalPrice').innerHTML = price;
-            document.getElementById('productModalWeight').textContent = weight;
+            document.getElementById('productModalWeight').innerHTML = `${weight ? weight + ' ' + 'grams ' : 'N/A'} `;
 
             // Handle award badge
             const awardBadge = document.getElementById('productModalAward');
