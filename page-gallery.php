@@ -38,6 +38,16 @@
             </div>
         </div>
 
+
+          <div class="col-lg-4 col-md-6"  data-aos="fade-up" data-aos-delay="200">
+              <div class="gallery-item">
+           <a class="glightbox" data-gallery="images-gallery" href="https://i.pinimg.com/736x/00/14/7d/00147de6c3c18ebe741beffbf95c7d4e.jpg"><img src="https://i.pinimg.com/736x/00/14/7d/00147de6c3c18ebe741beffbf95c7d4e.jpg" class="img-fluid" alt="Tamarind" loading="lazy"></a>
+             <div class="image-overlay">
+                <p class="mb-0">Mango Glazed Banana Chips</p>
+            </div>
+            </div>
+        </div>
+
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
               <div class="gallery-item">
           <a class="glightbox" data-gallery="images-gallery" href="https://i.pinimg.com/1200x/06/d3/1e/06d31e129ed8c3454a0ef08da6c78fd2.jpg"><img src="https://i.pinimg.com/1200x/06/d3/1e/06d31e129ed8c3454a0ef08da6c78fd2.jpg" class="img-fluid" alt="Dragon Fruit" loading="lazy"></a>

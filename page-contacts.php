@@ -37,7 +37,20 @@
                 </div>
 
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+
+                  
+
                     <form class="contact-form form-validate" id="contact-form" method="post">
+
+
+                     <div class="alert alert-success alert-dismissible fade show hide" role="alert" id="alert-success" style="display: none;">
+                        <strong>Success!</strong> Thank you! Your message has been sent.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                     <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-danger" style="display: none;">
+                        <strong id="alert-danger-text"></strong>
+                    </div>
                         <div class="row">
 
                            <input type="hidden" id="website" name="website" autocomplete="off">
@@ -53,6 +66,7 @@
                                     <label class="required-field mb-2" for="email">Email</label>
                                     <input type="text" class="form-control" id="email" name="email"
                                         placeholder="" required>
+                                    <div class="text-danger small mt-1 d-none invalid-email" id="invalid-email">Please enter a valid email address.</div>
                                 </div>
                             </div>
 
@@ -69,11 +83,17 @@
                                     <textarea class="form-control" id="message" name="message" rows="4" placeholder="" required></textarea>
                                 </div>
                             </div>
+                           
 
-                            <div class="col-sm-12 mb-3">
-                                <button type="submit" name="submit" class="btn text-light"
-                                    style="background-color:var(--accent-color)">Submit</button>
-                            </div>
+                        <div class="col-12">
+                           <button type="submit" class="btn text-light submi-btn w-auto" 
+                                    style="background-color:var(--accent-color);">
+                            <span class="button-text text-center">Send Message</span>
+                            <span class="spinner-border spinner-border-sm text-light" 
+                                    role="status" aria-hidden="true" style="display: none;"></span>
+                            </button>
+
+                        </div>
 
                         </div>
                     </form>

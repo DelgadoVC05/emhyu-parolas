@@ -67,7 +67,7 @@
                                 <span class="author-name"><?php the_author(); ?></span>
                             </div>
                             
-                             <span class="meta-item text-muted text-small" style="font-size: 14px;">
+                             <span class="meta-item text-muted text-small" style="font-size: 12px;">
                                 <i class="fas fa-calendar-alt"></i>
                                 <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M d, Y'); ?></time>
                             </span>
