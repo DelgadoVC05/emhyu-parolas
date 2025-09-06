@@ -18,35 +18,24 @@
         if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post();
         ?>
-            <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp" data-wow-delay=".2s">
+            <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp">
                 <article class="blog-card">
-                    <div class="blog-card-image">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <a href="<?php the_permalink(); ?>" class="image-link">
-                                <?php the_post_thumbnail('medium', ['class' => 'card-img']); ?>
-                                <div class="blog-image-overlay">
-                                    <span class="read-more-btn">Read Article</span>
-                                </div>
-                            </a>
-                        <?php else : ?>
-                            <a href="<?php the_permalink(); ?>" class="image-link">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/blog/default.png" alt="<?php the_title(); ?>" class="card-img img-fluid" loading="lazy">
-                                <div class="blog-image-overlay">
-                                    <span class="read-more-btn">Read Article</span>
-                                </div>
-                            </a>
-                        <?php endif; ?>
-                        
-                        <!-- Category Badge -->
-                        <!-- <?php 
-                        $categories = get_the_category();
-                        if (!empty($categories)) :
-                        ?>
-                            <div class="category-badge">
-                                <?php echo esc_html($categories[0]->name); ?>
+                
+                  <?php if (has_post_thumbnail()) : ?>
+                        <?php $img_url = get_the_post_thumbnail_url(null, 'square-thumb'); ?>
+                    <?php else : ?>
+                        <?php $img_url = get_template_directory_uri() . '/assets/images/blog/default.png'; ?>
+                    <?php endif; ?>
+
+                    <div class="blog-card-image" style="background-image: url('<?php echo $img_url; ?>');">
+                        <a href="<?php the_permalink(); ?>" class="image-link">
+                            <div class="blog-image-overlay">
+                                <span class="read-more-btn">Read Article</span>
                             </div>
-                        <?php endif; ?> -->
+                        </a>
                     </div>
+
+
                     
                     <div class="blog-card-content">
      

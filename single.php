@@ -111,18 +111,7 @@
                         </div>
                     </nav>
                     
-                    <!-- Comments Section -->
-                    <!-- <section class="comments-section">
-                        <div class="comments-header">
-                            <h3>
-                                <i class="fas fa-comments"></i>
-                                <?php comments_number('Start the Discussion', 'One Comment', '% Comments'); ?>
-                            </h3>
-                        </div>
-                        <div class="comments-content">
-                            <?php comments_template(); ?>
-                        </div>
-                    </section> -->
+       
                     
                 <?php endwhile; endif; ?>
             </div>

@@ -232,9 +232,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    document.querySelectorAll('.blog-card-image img.card-img').forEach(img => {
+        img.onload = function () {
+            if (img.naturalHeight > img.naturalWidth) {
+                img.style.objectFit = 'contain';
+            } else {
+                img.style.objectFit = 'cover';
+            }
+        };
+    });
+
+
 
 
 
 });
+
+
 
 

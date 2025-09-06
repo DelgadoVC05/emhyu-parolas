@@ -80,8 +80,24 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
             <div class="product-card">
               <div class="product-image">
+
+                 <?php
+                                global $product;
+                                $attributes = $product->get_attributes();
+
+                                if ( isset( $attributes['award'] ) ) {
+                                    $award_attr = $attributes['award'];
+                                    $options = $award_attr->get_options();
+                                    
+                                    if ( !empty($options) ) {
+                                        foreach ( $options as $award ) {
+                                            echo '<div class="award-badge-product"><i class="fas fa-trophy"></i> ' . esc_html($award) . '</div>';
+                                        }
+                                    }
+                                }
+                    ?>
                 <div class="product-bag">
-                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" />
+                  <img src="<?php echo esc_url($image_url); ?>" />
                 </div>
               </div>
               <div class="product-info">
@@ -129,6 +145,22 @@
                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
             <div class="product-card">
               <div class="product-image">
+
+                 <?php
+                                global $product;
+                                $attributes = $product->get_attributes();
+
+                                if ( isset( $attributes['award'] ) ) {
+                                    $award_attr = $attributes['award'];
+                                    $options = $award_attr->get_options();
+                                    
+                                    if ( !empty($options) ) {
+                                        foreach ( $options as $award ) {
+                                            echo '<div class="award-badge-product"><i class="fas fa-trophy"></i> ' . esc_html($award) . '</div>';
+                                        }
+                                    }
+                                }
+                    ?>
                 <div class="product-bag">
                   <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" />
                 </div>
@@ -186,7 +218,7 @@
             <!-- Product Image -->
             <div class="text-center bg-light rounded p-3">
               <img id="productModalImage" src="" class="img-fluid rounded shadow-sm" 
-                   style="max-height: 300px; object-fit: contain;"/>
+                   style="max-height: 300px;"/>
             </div>
           </div>
         </div>

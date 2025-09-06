@@ -7,6 +7,7 @@ function emhyuparolas_theme_support() {
     add_theme_support('post-thumbnails');
     add_theme_support('custom-logo');
     add_theme_support('automatic-feed-links');
+    add_image_size('square-thumb', 300, 300, true);
 }
 add_action('after_setup_theme', 'emhyuparolas_theme_support');
 
@@ -43,9 +44,7 @@ function emhyuparolas_theme_styles() {
 add_action('wp_enqueue_scripts', 'emhyuparolas_theme_styles');
 
 
-/**
- * Enqueue Scripts - Updated to include EmailJS SDK and pass EmailJS config
- */
+
 function emhyuparolas_register_scripts() {
     $version = wp_get_theme()->get('Version');
     
