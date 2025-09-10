@@ -1,2 +1,3 @@
 # Ignore environment files
-.env
+assets/images/
+assets/mp4/
