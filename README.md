@@ -24,22 +24,23 @@ This is a custom WordPress theme for **Parolas Guimaras**, developed for use wit
 
 
 ## Usage
--To add a logo: Go to Appearance → Customize → Site Identity
--To assign menus: Go to Appearance → Menus
--To use a custom page template: Create a new page → Select Template
+- To add a logo: Go to Appearance → Customize → Site Identity  
+- To assign menus: Go to Appearance → Menus  
+- To use a custom page template: Create a new page → Select Template  
 
 ## Requirements
--WordPress 6.0+
--PHP 7.4 or higher
--MySQL 5.7+ / MariaDB
--WAMP / XAMPP for local development
+- WordPress 6.0+  
+- PHP 7.4 or higher  
+- MySQL 5.7+ / MariaDB  
+- WAMP / XAMPP for local development  
 
 ## Customization
--Modify colors in assets/css/style.css
--Register new widgets in functions.php
--Add new templates in /templates
+- Modify colors in `assets/css/style.css`  
+- Register new widgets in `functions.php`  
+- Add new templates in `/templates`  
 
 ## Credits
--Developed by Vince Carlo Delgado
--WordPress Theme Handbook
--Bootstrap Framework
+- Developed by Vince Carlo Delgado  
+- WordPress Theme Handbook  
+- Bootstrap Framework  
+
