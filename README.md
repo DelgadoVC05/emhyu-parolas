@@ -18,7 +18,7 @@ This is a custom WordPress theme for **Parolas Guimaras**, developed for use wit
 ## Installation
 1. Download or clone the repository into your `wp-content/themes` directory:
    ```bash
-   git clone https://github.com/username/emhyu-parolas.git
+   https://github.com/DelgadoVC05/emhyu-parolas.git
 2. Activate the theme from the WordPress dashboard: Appearance → Themes
 3. Customize via Appearance → Customize
 
