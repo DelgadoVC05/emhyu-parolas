@@ -18,7 +18,7 @@
         if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post();
         ?>
-            <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp">
+            <div class="col-md-6 col-lg-4 mt-5" data-aos="fade-up" data-aos-delay="200">
                 <article class="blog-card">
                 
                   <?php if (has_post_thumbnail()) : ?>

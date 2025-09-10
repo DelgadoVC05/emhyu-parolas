@@ -45,6 +45,23 @@ add_action('wp_enqueue_scripts', 'emhyuparolas_theme_styles');
 
 
 
+function enqueue_contact_form_script() {
+
+    if (is_page('contacts')) { 
+        wp_enqueue_script(
+            'contact-form-script',
+            get_template_directory_uri() . '/assets/js/contact-form.js',
+            array('recaptcha-js', 'emailjs-sdk'),
+            '1.0',
+            true
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_contact_form_script');
+
+
+
+
 function emhyuparolas_register_scripts() {
     $version = wp_get_theme()->get('Version');
     
@@ -77,14 +94,6 @@ function emhyuparolas_register_scripts() {
     // Main theme script
     wp_enqueue_script('emhyuparolas-script', get_template_directory_uri() . '/assets/js/script.js', array('swiper-js', 'aos-js'), $version, true);
     
-    // Contact form script with EmailJS dependency
-    wp_enqueue_script(
-        'contact-form-script',
-        get_template_directory_uri() . '/assets/js/contact-form.js',
-        array('recaptcha-js', 'emailjs-sdk'), 
-        '1.0',
-        true
-    );
     
     // Pass configuration to JavaScript
     wp_localize_script(

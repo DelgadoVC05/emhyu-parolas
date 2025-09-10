@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Populate modal
             document.getElementById('productModalLabel').textContent = title;
             document.getElementById('productModalDescription').innerHTML = description;
-            document.getElementById('productModalImage').src = image;
+            document.getElementById('productModalImage').src = image || '../assets/image/default-product.png';
             document.getElementById('productModalPrice').innerHTML = price;
             document.getElementById('productModalWeight').innerHTML = `${weight ? weight + ' ' + 'grams ' : 'N/A'} `;
 

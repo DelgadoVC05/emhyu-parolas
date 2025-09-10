@@ -12,6 +12,7 @@
             
           <!-- FDA License Certificate -->
         <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            
                 <div class="certificate-card h-100">
                     <div class="award-badge-certificate">Official License</div>
                     <div class="certificate-image has-image">
@@ -23,9 +24,9 @@
                             loading="lazy"
                             onerror="this.style.display='none'; this.parentElement.classList.remove('has-image'); this.parentElement.innerHTML='<i class=\'fas fa-certificate award-icon\'></i>';">
                           
-                              <div class="ca-image-overlay">
-                                    <span class="ca-btn">Read Article</span>
-                              </div>
+                            <!-- <div class="ca-image-overlay">
+                                    <span class="ca-btn">View</span>
+                            </div> -->
                     </a>
                     </div>
                     

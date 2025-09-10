@@ -97,7 +97,7 @@
                                 }
                     ?>
                 <div class="product-bag">
-                  <img src="<?php echo esc_url($image_url); ?>" />
+                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" />
                 </div>
               </div>
               <div class="product-info">
