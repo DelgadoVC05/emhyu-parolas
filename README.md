@@ -39,7 +39,6 @@ This is a custom WordPress theme for **Parolas Guimaras**, developed for use wit
 ## Customization
 - Modify colors in `assets/css/style.css`  
 - Register new widgets in `functions.php`  
-- Add new templates in `/templates`  
 
 ## Credits
 - Developed by Vince Carlo Delgado  
