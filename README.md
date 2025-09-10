@@ -6,6 +6,8 @@ This is a custom WordPress theme for **Parolas Guimaras**, developed for use wit
 
 ![Website Screenshot](/screenshot.png)
 
+![Website Screenshot](/screenshot1.png)
+
 
 ## Features
 - Fully responsive and mobile-friendly design
