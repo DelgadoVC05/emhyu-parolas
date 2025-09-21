@@ -2,7 +2,7 @@
 
   <section id="products" class="products-section">
 
-  <div class="section-title mt-5" data-aos="fade-up">
+  <div class="section-title mt-5 fade-title">
       <h2 class="display-5 fw-bold mb-4">Our Products</h2>
         <p class="sub-title">Tradition you love, innovation you’ll crave</p>
 
@@ -97,7 +97,7 @@
                                 }
                     ?>
                 <div class="product-bag">
-                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" />
+                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" loading="lazy"/>
                 </div>
               </div>
               <div class="product-info">
@@ -162,7 +162,7 @@
                                 }
                     ?>
                 <div class="product-bag">
-                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" />
+                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" loading="lazy" />
                 </div>
               </div>
               <div class="product-info">
@@ -194,14 +194,17 @@
 <!-- Product Modal -->
 
 <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content shadow-lg rounded-3 border-0">
         
-      <!-- Header with Close Button -->
-      <div class="modal-header border-0 pb-2 position-relative">
-        <h4 class="modal-title fw-bold flex-grow-1" id="productModalLabel" style="color: var(--accent-color, #007bff);"></h4>
-        <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" 
-                data-bs-dismiss="modal" aria-label="Close"></button>
+      <!-- Header -->
+      <div class="modal-header border-0 pb-2 sticky-top bg-white" style="z-index: 1056;">
+        <h4 class="modal-title fw-bold flex-grow-1" 
+            id="productModalLabel" 
+            style="color: var(--accent-color, #007bff);"></h4>
+        <button type="button" class="btn-close" 
+                data-bs-dismiss="modal" 
+                aria-label="Close"></button>
       </div>
       
       <!-- Body -->
@@ -210,15 +213,18 @@
         <div class="col-md-6">
           <div class="position-relative">
             <!-- Award Badge -->
-            <div id="productModalAward" class="position-absolute top-0 start-0 m-2 badge bg-warning text-dark px-2 py-1 rounded-pill" style="display: none; z-index: 10;">
+            <div id="productModalAward" 
+                 class="position-absolute top-0 start-0 m-2 badge bg-warning text-dark px-2 py-1 rounded-pill" 
+                 style="display: none; z-index: 10;">
               <i class="fas fa-trophy me-1"></i>
               <span></span>
             </div>
             
             <!-- Product Image -->
             <div class="text-center bg-light rounded p-3">
-              <img id="productModalImage" src="" class="img-fluid rounded shadow-sm" 
-                   style="max-height: 300px;"/>
+              <img id="productModalImage" src="" 
+                   class="img-fluid rounded shadow-sm" 
+                   style="max-height: 300px;" loading="lazy"/>
             </div>
           </div>
         </div>
@@ -255,19 +261,14 @@
               </div>
             </div>
 
-
           </div>
         </div>
       </div>
       
       <!-- Footer -->
-      <div class="modal-footer border-0 pt-0">
+      <div class="modal-footer border-0 pt-0 sticky-bottom bg-white" style="z-index: 1056;">
         <div class="w-100">
           <div class="d-flex gap-3 justify-content-end">
-            <!-- <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal">
-              <i class="fas fa-times me-1"></i> Close
-            </button> -->
-            
             <a href="https://shopee.ph/emhyufoods" target="_blank" id="addOrderNowButton" 
                class="btn px-4 py-2 text-white fw-semibold shadow-sm" 
                style="background-color: var(--accent-color, #007bff);">
@@ -276,9 +277,11 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
+
 
 <?php get_footer(); ?>
 

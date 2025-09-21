@@ -28,6 +28,8 @@ function emhyuparolas_menus() {
 }
 add_action('init', 'emhyuparolas_menus');
 
+
+
 /**
  * Enqueue Styles
  */
@@ -35,9 +37,7 @@ function emhyuparolas_theme_styles() {
     $version = wp_get_theme()->get('Version');
     // CSS
     wp_enqueue_style('emhyuparolas-bootstrap-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css', array(), '5.3.8', 'all');
-    wp_enqueue_style('aos-css', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css', array(), '2.3.4', 'all');
     wp_enqueue_style('font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css', array(), '7.0.0', 'all');
-    wp_enqueue_style('swiper-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css', array(), '11.0.5', 'all');
     wp_enqueue_style('glightbox-css', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.min.css', array(), '3.3.1', 'all');
     wp_enqueue_style('emhyuparolas-style', get_template_directory_uri() . '/assets/css/style.css', array(), $version, 'all');
 }
@@ -55,24 +55,23 @@ function enqueue_contact_form_script() {
             '1.0',
             true
         );
-    }
-}
-add_action('wp_enqueue_scripts', 'enqueue_contact_form_script');
+  
+    // Pass configuration to JavaScript
+    wp_localize_script(
+        'contact-form-script', 
+        'my_form_ajax',
+        array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('contact_form_nonce'),
+            'site_key' => RECAPTCHA_SITE_KEY,
+            'emailjs_service_id' => EMAILJS_SERVICE_ID,
+            'emailjs_template_id' => EMAILJS_TEMPLATE_ID,
+            'emailjs_public_key' => EMAILJS_PUBLIC_KEY,
+        )
+    );
 
 
-
-
-function emhyuparolas_register_scripts() {
-    $version = wp_get_theme()->get('Version');
-    
-    // JS Libraries
-    wp_enqueue_script('emhyuparolas-bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js', array(), '5.3.8', true);
-    wp_enqueue_script('aos-js', 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js', array(), '2.3.4', true);
-    wp_enqueue_script('font-awesome-js', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/js/all.min.js', array(), '7.0.0', true);
-    wp_enqueue_script('swiper-js', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js', array(), '11.0.5', true);
-    wp_enqueue_script('glightbox-js', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js', array(), '3.3.1', true);
-    
-     wp_enqueue_script('purify-js', 'https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js', array(), '2.4.0', true);
+        wp_enqueue_script('purify-js', 'https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js', array(), '2.4.0', true);
     // EmailJS SDK
     wp_enqueue_script(
         'emailjs-sdk',
@@ -90,26 +89,35 @@ function emhyuparolas_register_scripts() {
         null,
         true
     );
+
+
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_contact_form_script');
+
+
+
+
+function emhyuparolas_register_scripts() {
+    $version = wp_get_theme()->get('Version');
     
-    // Main theme script
-    wp_enqueue_script('emhyuparolas-script', get_template_directory_uri() . '/assets/js/script.js', array('swiper-js', 'aos-js'), $version, true);
-    
-    
-    // Pass configuration to JavaScript
-    wp_localize_script(
-        'contact-form-script', 
-        'my_form_ajax',
-        array(
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('contact_form_nonce'),
-            'site_key' => RECAPTCHA_SITE_KEY,
-            'emailjs_service_id' => EMAILJS_SERVICE_ID,
-            'emailjs_template_id' => EMAILJS_TEMPLATE_ID,
-            'emailjs_public_key' => EMAILJS_PUBLIC_KEY,
-        )
+    // JS Libraries
+    wp_enqueue_script('emhyuparolas-bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js', array(), '5.3.8', true);
+    wp_enqueue_script('gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', array(), '3.12.5', true);
+    wp_enqueue_script('ScrollTrigger-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', array('gsap-js'), '3.12.5', true);
+    wp_enqueue_script('glightbox-js', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js', array(), '3.3.1', true);
+
+    // ✅ Your main custom JS file
+    wp_enqueue_script(
+        'emhyuparolas-main-js',
+        get_template_directory_uri() . '/assets/js/script.js',
+        array('jquery', 'gsap-js', 'ScrollTrigger-js', 'glightbox-js', 'emhyuparolas-bootstrap-js'),
+        $version,
+        true
     );
 }
 add_action('wp_enqueue_scripts', 'emhyuparolas_register_scripts');
+
 
 // AJAX handler for reCAPTCHA verification only
 add_action('wp_ajax_verify_recaptcha', 'handle_recaptcha_verification');

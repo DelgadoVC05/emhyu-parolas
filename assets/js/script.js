@@ -2,6 +2,328 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(".fade-in", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".fade-in",
+            start: "top 80%",
+        }
+    });
+
+
+    // Hero Page Carousel
+
+    gsap.utils.toArray(".carousel-item img").forEach((img, i) => {
+        gsap.from(img, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 1,
+            delay: i * 0.2, // stagger each slide
+            scrollTrigger: {
+                trigger: img,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+            }
+        });
+    });
+
+
+    // Animate Section Title
+    gsap.from("#choose-parolas .section-title", {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#choose-parolas .section-title",
+            start: "top 85%"
+        }
+    });
+
+    // Animate Feature Icons (bounce effect)
+    gsap.utils.toArray("#choose-parolas .feature-icon i").forEach((icon, i) => {
+        gsap.from(icon, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.2, // stagger each icon
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: icon,
+                start: "top 90%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
+
+    //Hero button
+
+    gsap.from(".heroBtn button", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out"
+    });
+
+
+
+    const heroButtons = document.querySelectorAll(".heroBtn button");
+    heroButtons.forEach(btn => {
+        btn.addEventListener("mouseenter", () => {
+            gsap.to(btn, { scale: 1.05, duration: 0.2, ease: "power1.out" });
+        });
+        btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, { scale: 1, duration: 0.2, ease: "power1.out" });
+        });
+    });
+
+    // Animate Headings + Paragraphs
+    gsap.from("#choose-parolas h4, #choose-parolas p", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.2,
+        scrollTrigger: {
+            trigger: "#choose-parolas",
+            start: "top 80%"
+        }
+    });
+
+
+
+
+    //About
+
+    // Animate About Content (slide in from left)
+    gsap.from("#about .heritage-content", {
+        opacity: 0,
+        x: -50,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#about .heritage-content",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Animate About Image (zoom in)
+    gsap.from("#about .about-img img", {
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        delay: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#about .about-img",
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Animate Heritage Quote (fade up delayed)
+    gsap.from("#about .heritage-quote", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: 0.4,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#about .heritage-quote",
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Title animation (fade up)
+    gsap.from(".our-story .section-title", {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".our-story .section-title",
+            start: "top 85%"
+        }
+    });
+
+    // Timeline items (stagger fade from left)
+    gsap.from(".our-story .timeline-item", {
+        opacity: 0,
+        x: -50,
+        duration: 1,
+        stagger: 0.3,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: ".our-story .timeline-item",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Story highlight quote (zoom in)
+    gsap.from(".our-story .story-highlight", {
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+            trigger: ".our-story .story-highlight",
+            start: "top 85%"
+        }
+    });
+
+    // Achievement cards (stagger bounce in)
+    gsap.from(".our-story .achievement-card", {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "bounce.out",
+        scrollTrigger: {
+            trigger: ".our-story .achievement-cards",
+            start: "top 90%"
+        }
+    });
+
+    // Animate Vision, Mission, Commitment cards
+    gsap.from(".vmv-card", {
+        scrollTrigger: {
+            trigger: ".vmv-card",
+            start: "top 85%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out"
+    });
+
+    // Animate Core Values list (left column)
+    gsap.from(".values-list .value-item", {
+        scrollTrigger: {
+            trigger: ".values-list",
+            start: "top 80%",
+        },
+        x: -80,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.2,
+        ease: "power3.out"
+    });
+
+    // Animate Business Practices list (right column)
+    gsap.from(".business-list .business-item", {
+        scrollTrigger: {
+            trigger: ".business-list",
+            start: "top 80%",
+        },
+        x: 80,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.2,
+        ease: "power3.out"
+    });
+
+
+
+
+    gsap.from(".fade-title", {
+        scrollTrigger: { trigger: ".fade-title", start: "top 90%" },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    });
+
+
+    // Blog Cards 
+    gsap.utils.toArray(".fade-card").forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: "power2.out"
+        });
+    });
+
+    // Pagination
+    gsap.from(".fade-pagination", {
+        scrollTrigger: { trigger: ".fade-pagination", start: "top 90%" },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.out"
+    });
+
+
+
+    /*
+     Contact Page 
+    
+    Animate contact info (slide in from right) */
+    gsap.from(".fade-info", {
+        opacity: 0,
+        x: 80,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".fade-info",
+            start: "top 85%"
+        }
+    });
+
+    // Animate contact form (slide in from left)
+    gsap.from(".fade-form", {
+        opacity: 0,
+        x: -80,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".fade-form",
+            start: "top 85%"
+        }
+    });
+
+    // Animate map fade-up
+    gsap.from(".fade-map", {
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".fade-map",
+            start: "top 90%"
+        }
+    });
+
+
+
+
+    //Footer
+
+    gsap.from("footer", {
+        y: 80,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "footer",
+            start: "top 95%",
+        }
+    });
+
+
+
+
 
 
     const modal = document.getElementById('productModal');
@@ -51,20 +373,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
     window.addEventListener('scroll', function () {
-        const navbar = document.querySelector('.header');
+        console.log("scrollY:", window.scrollY);
+
+        const navbar = document.getElementById('header');
+        if (!navbar) return;
+
         if (window.scrollY > 50) {
             navbar.style.background = 'rgba(255,255,255,0.98)';
             navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            navbar.style.transform = 'translateY(0)';
         } else {
-            navbar.style.background = 'none';
+            navbar.style.background = 'transparent';
             navbar.style.boxShadow = 'none';
         }
     });
+
+
 
     const observerOptions = {
         threshold: 0.1,
@@ -129,49 +453,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    // Play when modal opens
-    videoModal.addEventListener('shown.bs.modal', function () {
-        storyVideo.play();
-    });
+    const videoModal = document.getElementById('videoModal');
+    const storyVideo = document.getElementById('storyVideo');
 
-    // Pause and reset when modal closes
-    videoModal.addEventListener('hidden.bs.modal', function () {
-        storyVideo.pause();
-        storyVideo.currentTime = 0;
-    });
+    if (videoModal && storyVideo) {
+        // Play when modal opens
+        videoModal.addEventListener('shown.bs.modal', function () {
+            storyVideo.play();
+        });
+
+        // Pause and reset when modal closes
+        videoModal.addEventListener('hidden.bs.modal', function () {
+            storyVideo.pause();
+            storyVideo.currentTime = 0;
+        });
+    }
 
 
     const glightbox = GLightbox({
         selector: '.glightbox'
     });
-
-
-    function aosInit() {
-        AOS.init({
-            duration: 600,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
-    }
-    window.addEventListener('load', aosInit);
-
-
-    function initSwiper() {
-        document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
-            let config = JSON.parse(
-                swiperElement.querySelector(".swiper-config").innerHTML.trim()
-            );
-
-            if (swiperElement.classList.contains("swiper-tab")) {
-                initSwiperWithCustomPagination(swiperElement, config);
-            } else {
-                new Swiper(swiperElement, config);
-            }
-        });
-    }
-
-    window.addEventListener("load", initSwiper);
 
 
     /**
@@ -196,24 +497,24 @@ document.addEventListener('DOMContentLoaded', function () {
     /**
      * Navmenu Scrollspy
      */
-    let navmenulinks = document.querySelectorAll('.navmenu a');
+    // let navmenulinks = document.querySelectorAll('.navmenu a');
 
-    function navmenuScrollspy() {
-        navmenulinks.forEach(navmenulink => {
-            if (!navmenulink.hash) return;
-            let section = document.querySelector(navmenulink.hash);
-            if (!section) return;
-            let position = window.scrollY + 200;
-            if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-                document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-                navmenulink.classList.add('active');
-            } else {
-                navmenulink.classList.remove('active');
-            }
-        })
-    }
-    window.addEventListener('load', navmenuScrollspy);
-    document.addEventListener('scroll', navmenuScrollspy);
+    // function navmenuScrollspy() {
+    //     navmenulinks.forEach(navmenulink => {
+    //         if (!navmenulink.hash) return;
+    //         let section = document.querySelector(navmenulink.hash);
+    //         if (!section) return;
+    //         let position = window.scrollY + 200;
+    //         if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+    //             document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+    //             navmenulink.classList.add('active');
+    //         } else {
+    //             navmenulink.classList.remove('active');
+    //         }
+    //     })
+    // }
+    // window.addEventListener('load', navmenuScrollspy);
+    // document.addEventListener('scroll', navmenuScrollspy);
 
 
     const tabBtns = document.querySelectorAll('.tab-btn');

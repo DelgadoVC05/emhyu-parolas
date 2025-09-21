@@ -1,7 +1,9 @@
 <footer class="footer text-center text-lg-start text-muted">
   <!-- Section: Social media -->
+   
 <section class="text-light p-4">
   <div class="container text-center text-md-start mt-5">
+
     <!-- Grid row -->
     <div class="row mt-3">
       <!-- Logo Column -->
