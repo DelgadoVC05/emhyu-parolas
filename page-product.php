@@ -1,193 +1,275 @@
 <?php get_header(); ?>
+  
 
-  <section id="products" class="products-section">
-
-  <div class="section-title mt-5 fade-title">
-      <h2 class="display-5 fw-bold mb-4">Our Products</h2>
-        <p class="sub-title">Tradition you love, innovation you’ll crave</p>
-
+<section id="products" class="products-section">
+    <div class="section-title mt-5 fade-title">
+        <h2 class="display-5 fw-bold mb-4">Our Products</h2>
+        <p class="sub-title">Tradition you love, innovation you'll crave</p>
     </div>  
-  <div class="container">
-    
-    <?php
+    <div class="container">
+        <?php
+        $products_per_page = 8;
+        $current_page = isset($_GET['product_page']) ? max(1, intval($_GET['product_page'])) : 1;
+        $offset = ($current_page - 1) * $products_per_page;
 
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'all';
 
-    $categories = get_terms([
-        'taxonomy'   => 'product_cat',
-        'hide_empty' => true,
-        'exclude'    => [ get_option('default_product_cat') ], 
-    ]);
 
-    // Get all products
-    $args = [
-        'post_type'      => 'product',
-        'posts_per_page' => -1,
-        'orderby'        => 'date',
-        'order'          => 'DESC',
-    ];
-    $loop = new WP_Query($args);
+        // Get categories
+        $categories = get_terms([
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => true,
+            'exclude'    => [ get_option('default_product_cat') ], 
+        ]);
 
-    $products = [];
-    if ($loop->have_posts()) {
-        while ($loop->have_posts()) {
-            $loop->the_post();
-            $products[] = wc_get_product(get_the_ID());
+        // Total products for "All Products"
+        $total_products_query = new WP_Query([
+            'post_type'      => 'product',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+        ]);
+        $total_products = $total_products_query->found_posts;
+        $total_pages = ceil($total_products / $products_per_page);
+        wp_reset_postdata();
+
+        // Products query for "All Products"
+        $products_query = new WP_Query([
+            'post_type'      => 'product',
+            'post_status'    => 'publish',
+            'posts_per_page' => $products_per_page,
+            'offset'         => $offset,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+        ]);
+
+        // Custom pagination function
+        function render_custom_pagination($current_page, $total_pages, $base_url, $query_key = 'product_page') {
+            if ($total_pages <= 1) return;
+
+            $pagination_html = '<nav aria-label="Custom Products Pagination" class="custom-pagination">';
+            $pagination_html .= '<ul class="pagination justify-content-center">';
+
+            // Previous button
+            if ($current_page > 1) {
+                $prev_page = $current_page - 1;
+                $prev_url = $prev_page == 1 ? $base_url : add_query_arg($query_key, $prev_page, $base_url);
+                $pagination_html .= '<li class="page-item"><a class="page-link" href="' . esc_url($prev_url) . '"><i class="fas fa-chevron-left"></i> Previous</a></li>';
+            }
+
+            // Page numbers
+            $start = max(1, $current_page - 2);
+            $end = min($total_pages, $current_page + 2);
+
+            for ($i = $start; $i <= $end; $i++) {
+                $page_url = $i == 1 ? $base_url : add_query_arg($query_key, $i, $base_url);
+                $active_class = $i == $current_page ? ' active' : '';
+                $pagination_html .= '<li class="page-item' . $active_class . '">';
+                if ($i == $current_page) {
+                    $pagination_html .= '<span class="page-link">' . $i . '</span>';
+                } else {
+                    $pagination_html .= '<a class="page-link" href="' . esc_url($page_url) . '">' . $i . '</a>';
+                }
+                $pagination_html .= '</li>';
+            }
+
+            // Next button
+            if ($current_page < $total_pages) {
+                $next_page = $current_page + 1;
+                $next_url = add_query_arg($query_key, $next_page, $base_url);
+                $pagination_html .= '<li class="page-item"><a class="page-link" href="' . esc_url($next_url) . '">Next <i class="fas fa-chevron-right"></i></a></li>';
+            }
+
+            $pagination_html .= '</ul></nav>';
+            return $pagination_html;
         }
-    }
-    wp_reset_postdata();
-    ?>
+        ?>
 
-    <!-- Tabs Navigation -->
-    <ul class="nav nav-tabs justify-content-center mb-5" id="productTabs" role="tablist" style="border-bottom:none">
-      <!-- All Products Tab -->
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" 
+        <!-- Tabs Navigation -->
+        <ul class="nav nav-tabs justify-content-center mb-5" id="productTabs" role="tablist" style="border-bottom:none">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link <?php echo $active_tab === 'all' ? 'active' : ''; ?>" 
                 id="tab-all" 
-                data-bs-toggle="tab" 
-                data-bs-target="#tab-pane-all" 
-                type="button" role="tab">
-          All Products
-        </button>
-      </li>
+                href="<?php echo esc_url(remove_query_arg(array_merge(array_map(function($c){return 'cat_page_'.$c->slug;}, $categories), ['tab']))); ?>" 
+                role="tab">
+                    All Products (<?php echo $total_products; ?>)
+                </a>
 
-      <?php foreach ($categories as $cat): ?>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" 
-                  id="tab-<?php echo $cat->slug; ?>" 
-                  data-bs-toggle="tab" 
-                  data-bs-target="#tab-pane-<?php echo $cat->slug; ?>" 
-                  type="button" role="tab">
-            <?php echo $cat->name; ?>
-          </button>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-
-    <!-- Tabs Content -->
-    <div class="tab-content">
-
-      <!-- All Products Tab -->
-      <div class="tab-pane fade show active" id="tab-pane-all" role="tabpanel">
-        <div class="row">
-          <?php foreach ($products as $product) :
-              $product_id = $product->get_id();
-              $image_url = has_post_thumbnail($product_id)
-                  ? get_the_post_thumbnail_url($product_id, 'medium')
-                  : get_template_directory_uri() . '/assets/images/default-product.png';
-              $categories_list = wc_get_product_category_list($product_id, ', ');
-          ?>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-            <div class="product-card">
-              <div class="product-image">
-
-                 <?php
-                                global $product;
-                                $attributes = $product->get_attributes();
-
-                                if ( isset( $attributes['award'] ) ) {
-                                    $award_attr = $attributes['award'];
-                                    $options = $award_attr->get_options();
-                                    
-                                    if ( !empty($options) ) {
-                                        foreach ( $options as $award ) {
-                                            echo '<div class="award-badge-product"><i class="fas fa-trophy"></i> ' . esc_html($award) . '</div>';
-                                        }
-                                    }
-                                }
-                    ?>
-                <div class="product-bag">
-                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" loading="lazy"/>
-                </div>
-              </div>
-              <div class="product-info">
-
-             
-                <h5 class="product-name"><?php echo $product->get_name(); ?></h5>
-                <p class="text-muted"><?php echo wp_trim_words($product->get_short_description(), 12); ?></p>
-                <button class="btn-view-details"
-                        data-bs-toggle="modal"
-                        data-bs-target="#productModal"
-                        data-title='<?php echo esc_attr($product->get_name()); ?>'
-                        data-description='<?php echo esc_attr($product->get_description()); ?>'
-                        data-weight='<?php echo esc_attr($product->get_weight()); ?>'
-                        data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
-                        data-price='<?php echo $product->get_price(); ?>'>
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-
-      <!-- Category Tabs -->
-      <?php foreach ($categories as $cat): ?>
-        <div class="tab-pane fade" id="tab-pane-<?php echo $cat->slug; ?>" role="tabpanel">
-          <div class="row">
-            <?php
-            $cat_products = wc_get_products([
-                'status'   => 'publish',
-                'limit'    => -1,
-                'category' => [ $cat->slug ],
-                'orderby'  => 'date',
-                'order'    => 'DESC',
-            ]);
-
-            foreach ($cat_products as $product) :
-                $product_id = $product->get_id();
-                $image_url = has_post_thumbnail($product_id)
-                    ? get_the_post_thumbnail_url($product_id, 'medium')
-                    : get_template_directory_uri() . '/assets/images/default-product.png';
-                $categories_list = wc_get_product_category_list($product_id, ', ');
-            ?>
-                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-            <div class="product-card">
-              <div class="product-image">
-
-                 <?php
-                                global $product;
-                                $attributes = $product->get_attributes();
-
-                                if ( isset( $attributes['award'] ) ) {
-                                    $award_attr = $attributes['award'];
-                                    $options = $award_attr->get_options();
-                                    
-                                    if ( !empty($options) ) {
-                                        foreach ( $options as $award ) {
-                                            echo '<div class="award-badge-product"><i class="fas fa-trophy"></i> ' . esc_html($award) . '</div>';
-                                        }
-                                    }
-                                }
-                    ?>
-                <div class="product-bag">
-                  <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" loading="lazy" />
-                </div>
-              </div>
-              <div class="product-info">
-                <h5 class="product-name"><?php echo $product->get_name(); ?></h5>
-                <p class="text-muted"><?php echo wp_trim_words($product->get_short_description(), 12); ?></p>
-                <button class="btn-view-details"
-                        data-bs-toggle="modal"
-                        data-bs-target="#productModal"
-                        data-title='<?php echo esc_attr($product->get_name()); ?>'
-                        data-description='<?php echo esc_attr($product->get_description()); ?>'
-                        data-weight='<?php echo esc_attr($product->get_weight()); ?>'
-                        data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
-                        data-price='<?php echo $product->get_price(); ?>'>
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
+                                
+            </li>
+            <?php foreach ($categories as $cat): ?>
+                <li class="nav-item" role="presentation">
+                 <a class="nav-link <?php echo $active_tab === $cat->slug ? 'active' : ''; ?>" 
+                    id="tab-<?php echo $cat->slug; ?>" 
+                    href="<?php echo esc_url(add_query_arg('tab', $cat->slug)); ?>" 
+                    role="tab">
+                        <?php echo $cat->name; ?> (<?php echo $cat->count; ?>)
+                    </a>
+            </li>
             <?php endforeach; ?>
-          </div>
-        </div>
-      <?php endforeach; ?>
+        </ul>
 
+        <!-- Tabs Content -->
+        <div class="tab-content">
+            <!-- All Products Tab -->
+  
+                <div class="tab-pane fade <?php echo $active_tab === 'all' ? 'show active' : ''; ?>" id="tab-pane-all" role="tabpanel">
+
+                <div class="row">
+                    <?php if ($products_query->have_posts()): ?>
+                        <?php while ($products_query->have_posts()): $products_query->the_post(); ?>
+                            <?php $product = wc_get_product(get_the_ID()); ?>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <?php
+                                        $attributes = $product->get_attributes();
+                                        if (isset($attributes['award'])) {
+                                            $award_attr = $attributes['award'];
+                                            foreach ($award_attr->get_options() as $award) {
+                                                echo '<div class="award-badge-product"><i class="fas fa-trophy"></i> ' . esc_html($award) . '</div>';
+                                            }
+                                        }
+                                        $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : get_template_directory_uri() . '/assets/images/default-product.png';
+                                        ?>
+                                        <div class="product-bag">
+                                            <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" loading="lazy"/>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h5 class="product-name"><?php echo $product->get_name(); ?></h5>
+                                        <p class="text-muted"><?php echo wp_trim_words($product->get_short_description(), 12); ?></p>
+                                        <button class="btn-view-details"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#productModal"
+                                                data-title='<?php echo esc_attr($product->get_name()); ?>'
+                                                data-description='<?php echo esc_attr($product->get_description()); ?>'
+                                                data-weight='<?php echo esc_attr($product->get_weight()); ?>'
+                                                data-image='<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>'
+                                                data-price='<?php echo $product->get_price(); ?>'>
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; wp_reset_postdata(); ?>
+                    <?php else: ?>
+                        <div class="col-12">
+                            <div class="alert text-center" style="background: linear-gradient(135deg, #ffd700 0%, #7bc142 100%); color: var(--accent-color)">
+                                <h4>No Products Found</h4>
+                                <p>There are no products to display on this page.</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <!-- All Products Pagination -->
+                <div class="pagination-wrapper mt-4">
+                    <?php 
+                    $current_url = remove_query_arg('product_page');
+                    echo render_custom_pagination($current_page, $total_pages, $current_url, 'product_page');
+                    ?>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <?php foreach ($categories as $cat): ?>
+                <?php 
+                    $cat_page_key     = 'cat_page_' . $cat->slug;
+                    $current_cat_page = isset($_GET[$cat_page_key]) ? max(1, intval($_GET[$cat_page_key])) : 1;
+                    $offset           = ($current_cat_page - 1) * $products_per_page;
+
+                    $cat_products_query = new WP_Query([
+                        'post_type'      => 'product',
+                        'post_status'    => 'publish',
+                        'posts_per_page' => $products_per_page,
+                        'offset'         => $offset,
+                        'tax_query'      => [[
+                            'taxonomy' => 'product_cat',
+                            'field'    => 'slug',
+                            'terms'    => $cat->slug,
+                        ]],
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                    ]);
+
+                    $total_cat_products = $cat_products_query->found_posts;
+                    $total_cat_pages    = ceil($total_cat_products / $products_per_page);
+                ?>
+
+                    <div class="tab-pane fade <?php echo $active_tab === $cat->slug ? 'show active' : ''; ?>" id="tab-pane-<?php echo $cat->slug; ?>" role="tabpanel">
+
+                    <div class="row">
+                        <?php if ($cat_products_query->have_posts()): ?>
+                            <?php while ($cat_products_query->have_posts()): $cat_products_query->the_post(); ?>
+                                <?php 
+                                    $product    = wc_get_product(get_the_ID());
+                                    $product_id = $product->get_id();
+                                    $image_url  = has_post_thumbnail($product_id) ? get_the_post_thumbnail_url($product_id, 'medium') : get_template_directory_uri() . '/assets/images/default-product.png';
+                                ?>
+                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <?php
+                                            $attributes = $product->get_attributes();
+                                            if (isset($attributes['award'])) {
+                                                foreach ($attributes['award']->get_options() as $award) {
+                                                    echo '<div class="award-badge-product"><i class="fas fa-trophy"></i> ' . esc_html($award) . '</div>';
+                                                }
+                                            }
+                                            ?>
+                                            <div class="product-bag">
+                                                <img src="<?php echo esc_url($image_url); ?>" class="img-fluid" loading="lazy" />
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <h5 class="product-name"><?php echo $product->get_name(); ?></h5>
+                                            <p class="text-muted"><?php echo wp_trim_words($product->get_short_description(), 12); ?></p>
+                                            <button class="btn-view-details"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#productModal"
+                                                    data-title='<?php echo esc_attr($product->get_name()); ?>'
+                                                    data-description='<?php echo esc_attr($product->get_description()); ?>'
+                                                    data-weight='<?php echo esc_attr($product->get_weight()); ?>'
+                                                    data-image='<?php echo esc_url(get_the_post_thumbnail_url($product_id, 'large')); ?>'
+                                                    data-price='<?php echo $product->get_price(); ?>'>
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endwhile; wp_reset_postdata(); ?>
+                        <?php else: ?>
+                            <div class="col-12">
+                                <div class="alert text-center" style="background: linear-gradient(135deg, #ffd700 0%, #7bc142 100%);">
+                                    <p class="mt-2" style="color: var(--accent-color)">No products found in this category.</p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+         
+
+                    <?php if ($total_cat_pages > 1): ?>
+                    <div class="pagination-wrapper mt-4">
+                        <?php 
+                            // Keep tab in the URL
+                            $current_url = add_query_arg('tab', $cat->slug, remove_query_arg($cat_page_key));
+
+                            echo render_custom_pagination(
+                                $current_cat_page, 
+                                $total_cat_pages, 
+                                $current_url,
+                                $cat_page_key
+                            );
+                        ?>
+                    </div>
+                <?php endif; ?>
+
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
-  </div>
 </section>
 
 

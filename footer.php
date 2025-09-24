@@ -2,12 +2,12 @@
 
         <?php get_template_part('includes/footer');?>
 
-       <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+       <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" >
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content bg-dark">
               <div class="modal-header border-0" style="background-color:#0F4D0F">
                 <h5 class="modal-title text-white" id="videoModalLabel">How We Make It</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="stopVideo()"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
               </div>
               <div class="modal-body p-0">
@@ -19,8 +19,6 @@
             </div>
           </div>
         </div>
-
-
 
 
 

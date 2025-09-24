@@ -37,7 +37,7 @@
 
             <!-- Mobile Toggle Button -->
             <button class="btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-                <i class="fa-solid fa-bars" style="color:var(--accent-color)"></i>
+                <i class="fa-solid fa-bars fa-xl" style="color:var(--accent-color)"></i>
             </button>
         </div>
     </header>
